@@ -11,6 +11,12 @@
             font-family: Arial, sans-serif;
         }
 
+        /* 加载自定义字体 */
+        @font-face {
+            font-family: 'HYDaHeiJ';
+            src: url('fonts/HYDaHeiJ.ttf') format('truetype');
+        }
+
         /* 导航菜单样式 */
         nav {
             background-color: #333;
@@ -44,8 +50,24 @@
         }
 
         #unit1 {
-            background-color: yellow;
+            position: relative; /* 设置相对定位，用于子元素的绝对定位 */
+            background-color: transparent; /* 移除背景颜色 */
             margin-top: 48px; /* 为导航栏留出空间 */
+        }
+
+        #unit1 img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #unit1 .image-text {
+            position: absolute;
+            top: 10px; /* 距离顶部的距离 */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'HYDaHeiJ', sans-serif;
+            font-size: 15px;
+            color: #000000;
         }
 
         #unit2 {
@@ -87,7 +109,10 @@
     </nav>
 
     <!-- 单元内容 -->
-    <div id="unit1" class="unit">单元一</div>
+    <div id="unit1" class="unit">
+        <span class="image-text">词云图</span>
+        <img src="image/wordcloud01.png" alt="词云图">
+    </div>
     <div id="unit2" class="unit">单元二</div>
     <div id="unit3" class="unit">单元三</div>
 
