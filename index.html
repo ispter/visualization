@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自适应网页</title>
+    <style>
+        /* 全局样式 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 导航菜单样式 */
+        nav {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 单元内容样式 */
+        .unit {
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        #unit1 {
+            background-color: yellow;
+            margin-top: 48px; /* 为导航栏留出空间 */
+        }
+
+        #unit2 {
+            background-color: blue;
+            color: white;
+        }
+
+        #unit3 {
+            background-color: red;
+            color: white;
+        }
+
+        /* 返回顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+
+        #back-to-top:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航菜单 -->
+    <nav>
+        <!-- 为导航链接添加平滑滚动效果 -->
+        <a href="#home" onclick="smoothScroll(event, 'home')">首页</a>
+        <a href="#unit1" onclick="smoothScroll(event, 'unit1')">单元一</a>
+        <a href="#unit2" onclick="smoothScroll(event, 'unit2')">单元二</a>
+        <a href="#unit3" onclick="smoothScroll(event, 'unit3')">单元三</a>
+    </nav>
+
+    <!-- 单元内容 -->
+    <div id="unit1" class="unit">单元一</div>
+    <div id="unit2" class="unit">单元二</div>
+    <div id="unit3" class="unit">单元三</div>
+
+    <!-- 返回顶部按钮 -->
+    <div id="back-to-top" onclick="smoothScrollToTop()">↑</div>
+
+    <script>
+        // 监听滚动事件，控制返回顶部按钮的显示与隐藏
+        window.onscroll = function() {
+            var backToTopButton = document.getElementById('back-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        // 平滑滚动到指定元素的函数
+        function smoothScroll(event, targetId) {
+            event.preventDefault();
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 平滑返回顶部函数
+        function smoothScrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
